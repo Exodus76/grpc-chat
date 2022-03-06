@@ -13,15 +13,19 @@ class basicService(basic_pb2_grpc.ConnectServicer):
 
 
 # def serve():
-#     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+#     server = grpc.server()
 #     basic_pb2_grpc.add_ConnectServicer_to_server(basicService(), server)
 #     server.add_insecure_port('localhost:42069')
 #     server.start()
 #     server.wait_for_termination()
 
 def serve():
-    server = grpc.aio.insecure_channel("localhost:42069")
-
+    server = grpc.aio.server()                                              #creates a server with which RPCs can be services
+    basic_pb2_grpc.add_ConnectServicer_to_server(basicService(), server)    #
+    server.add_insecure_port('localhost:42069')                             #opens up a port
+    server.start()
+    server.wait_for_termination()
+    
 
 if __name__ == '__main__':
     logging.basicConfig()
