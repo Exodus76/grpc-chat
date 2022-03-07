@@ -14,18 +14,19 @@ class ConnectStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SayHello = channel.unary_unary(
+        self.SayHello = channel.stream_stream(
                 '/chat.Connect/SayHello',
-                request_serializer=basic__pb2.HelloRequest.SerializeToString,
-                response_deserializer=basic__pb2.HelloReply.FromString,
+                request_serializer=basic__pb2.clientRequest.SerializeToString,
+                response_deserializer=basic__pb2.serverResponse.FromString,
                 )
 
 
 class ConnectServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SayHello(self, request, context):
+    def SayHello(self, request_iterator, context):
         """Sends a greeting
+        rpc SayHello (HelloRequest) returns (HelloReply) {}
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -34,10 +35,10 @@ class ConnectServicer(object):
 
 def add_ConnectServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SayHello': grpc.unary_unary_rpc_method_handler(
+            'SayHello': grpc.stream_stream_rpc_method_handler(
                     servicer.SayHello,
-                    request_deserializer=basic__pb2.HelloRequest.FromString,
-                    response_serializer=basic__pb2.HelloReply.SerializeToString,
+                    request_deserializer=basic__pb2.clientRequest.FromString,
+                    response_serializer=basic__pb2.serverResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -50,7 +51,7 @@ class Connect(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SayHello(request,
+    def SayHello(request_iterator,
             target,
             options=(),
             channel_credentials=None,
@@ -60,8 +61,8 @@ class Connect(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/chat.Connect/SayHello',
-            basic__pb2.HelloRequest.SerializeToString,
-            basic__pb2.HelloReply.FromString,
+        return grpc.experimental.stream_stream(request_iterator, target, '/chat.Connect/SayHello',
+            basic__pb2.clientRequest.SerializeToString,
+            basic__pb2.serverResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

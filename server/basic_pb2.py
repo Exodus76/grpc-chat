@@ -19,22 +19,22 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\020generated_files/',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0b\x62\x61sic.proto\x12\x04\x63hat\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1d\n\nHelloReply\x12\x0f\n\x07message\x18\x01 \x01(\t2=\n\x07\x43onnect\x12\x32\n\x08SayHello\x12\x12.chat.HelloRequest\x1a\x10.chat.HelloReply\"\x00\x42\x12Z\x10generated_files/b\x06proto3'
+  serialized_pb=b'\n\x0b\x62\x61sic.proto\x12\x04\x63hat\"\x1d\n\rclientRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"!\n\x0eserverResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2F\n\x07\x43onnect\x12;\n\x08SayHello\x12\x13.chat.clientRequest\x1a\x14.chat.serverResponse\"\x00(\x01\x30\x01\x42\x12Z\x10generated_files/b\x06proto3'
 )
 
 
 
 
-_HELLOREQUEST = _descriptor.Descriptor(
-  name='HelloRequest',
-  full_name='chat.HelloRequest',
+_CLIENTREQUEST = _descriptor.Descriptor(
+  name='clientRequest',
+  full_name='chat.clientRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='chat.HelloRequest.name', index=0,
+      name='name', full_name='chat.clientRequest.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -53,20 +53,20 @@ _HELLOREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=21,
-  serialized_end=49,
+  serialized_end=50,
 )
 
 
-_HELLOREPLY = _descriptor.Descriptor(
-  name='HelloReply',
-  full_name='chat.HelloReply',
+_SERVERRESPONSE = _descriptor.Descriptor(
+  name='serverResponse',
+  full_name='chat.serverResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='message', full_name='chat.HelloReply.message', index=0,
+      name='message', full_name='chat.serverResponse.message', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -84,27 +84,27 @@ _HELLOREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=51,
-  serialized_end=80,
+  serialized_start=52,
+  serialized_end=85,
 )
 
-DESCRIPTOR.message_types_by_name['HelloRequest'] = _HELLOREQUEST
-DESCRIPTOR.message_types_by_name['HelloReply'] = _HELLOREPLY
+DESCRIPTOR.message_types_by_name['clientRequest'] = _CLIENTREQUEST
+DESCRIPTOR.message_types_by_name['serverResponse'] = _SERVERRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), {
-  'DESCRIPTOR' : _HELLOREQUEST,
+clientRequest = _reflection.GeneratedProtocolMessageType('clientRequest', (_message.Message,), {
+  'DESCRIPTOR' : _CLIENTREQUEST,
   '__module__' : 'basic_pb2'
-  # @@protoc_insertion_point(class_scope:chat.HelloRequest)
+  # @@protoc_insertion_point(class_scope:chat.clientRequest)
   })
-_sym_db.RegisterMessage(HelloRequest)
+_sym_db.RegisterMessage(clientRequest)
 
-HelloReply = _reflection.GeneratedProtocolMessageType('HelloReply', (_message.Message,), {
-  'DESCRIPTOR' : _HELLOREPLY,
+serverResponse = _reflection.GeneratedProtocolMessageType('serverResponse', (_message.Message,), {
+  'DESCRIPTOR' : _SERVERRESPONSE,
   '__module__' : 'basic_pb2'
-  # @@protoc_insertion_point(class_scope:chat.HelloReply)
+  # @@protoc_insertion_point(class_scope:chat.serverResponse)
   })
-_sym_db.RegisterMessage(HelloReply)
+_sym_db.RegisterMessage(serverResponse)
 
 
 DESCRIPTOR._options = None
@@ -116,16 +116,16 @@ _CONNECT = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=82,
-  serialized_end=143,
+  serialized_start=87,
+  serialized_end=157,
   methods=[
   _descriptor.MethodDescriptor(
     name='SayHello',
     full_name='chat.Connect.SayHello',
     index=0,
     containing_service=None,
-    input_type=_HELLOREQUEST,
-    output_type=_HELLOREPLY,
+    input_type=_CLIENTREQUEST,
+    output_type=_SERVERRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

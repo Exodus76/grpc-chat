@@ -54,39 +54,39 @@ struct TableStruct_basic_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_basic_2eproto;
 namespace chat {
-class HelloReply;
-struct HelloReplyDefaultTypeInternal;
-extern HelloReplyDefaultTypeInternal _HelloReply_default_instance_;
-class HelloRequest;
-struct HelloRequestDefaultTypeInternal;
-extern HelloRequestDefaultTypeInternal _HelloRequest_default_instance_;
+class clientRequest;
+struct clientRequestDefaultTypeInternal;
+extern clientRequestDefaultTypeInternal _clientRequest_default_instance_;
+class serverResponse;
+struct serverResponseDefaultTypeInternal;
+extern serverResponseDefaultTypeInternal _serverResponse_default_instance_;
 }  // namespace chat
 PROTOBUF_NAMESPACE_OPEN
-template<> ::chat::HelloReply* Arena::CreateMaybeMessage<::chat::HelloReply>(Arena*);
-template<> ::chat::HelloRequest* Arena::CreateMaybeMessage<::chat::HelloRequest>(Arena*);
+template<> ::chat::clientRequest* Arena::CreateMaybeMessage<::chat::clientRequest>(Arena*);
+template<> ::chat::serverResponse* Arena::CreateMaybeMessage<::chat::serverResponse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace chat {
 
 // ===================================================================
 
-class HelloRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.HelloRequest) */ {
+class clientRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.clientRequest) */ {
  public:
-  inline HelloRequest() : HelloRequest(nullptr) {}
-  ~HelloRequest() override;
-  explicit constexpr HelloRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline clientRequest() : clientRequest(nullptr) {}
+  ~clientRequest() override;
+  explicit constexpr clientRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  HelloRequest(const HelloRequest& from);
-  HelloRequest(HelloRequest&& from) noexcept
-    : HelloRequest() {
+  clientRequest(const clientRequest& from);
+  clientRequest(clientRequest&& from) noexcept
+    : clientRequest() {
     *this = ::std::move(from);
   }
 
-  inline HelloRequest& operator=(const HelloRequest& from) {
+  inline clientRequest& operator=(const clientRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline HelloRequest& operator=(HelloRequest&& from) noexcept {
+  inline clientRequest& operator=(clientRequest&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -109,20 +109,20 @@ class HelloRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const HelloRequest& default_instance() {
+  static const clientRequest& default_instance() {
     return *internal_default_instance();
   }
-  static inline const HelloRequest* internal_default_instance() {
-    return reinterpret_cast<const HelloRequest*>(
-               &_HelloRequest_default_instance_);
+  static inline const clientRequest* internal_default_instance() {
+    return reinterpret_cast<const clientRequest*>(
+               &_clientRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(HelloRequest& a, HelloRequest& b) {
+  friend void swap(clientRequest& a, clientRequest& b) {
     a.Swap(&b);
   }
-  inline void Swap(HelloRequest* other) {
+  inline void Swap(clientRequest* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -130,7 +130,7 @@ class HelloRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(HelloRequest* other) {
+  void UnsafeArenaSwap(clientRequest* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -138,17 +138,17 @@ class HelloRequest final :
 
   // implements Message ----------------------------------------------
 
-  inline HelloRequest* New() const final {
-    return new HelloRequest();
+  inline clientRequest* New() const final {
+    return new clientRequest();
   }
 
-  HelloRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<HelloRequest>(arena);
+  clientRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<clientRequest>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const HelloRequest& from);
+  void CopyFrom(const clientRequest& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const HelloRequest& from);
+  void MergeFrom(const clientRequest& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -165,13 +165,13 @@ class HelloRequest final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(HelloRequest* other);
+  void InternalSwap(clientRequest* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "chat.HelloRequest";
+    return "chat.clientRequest";
   }
   protected:
-  explicit HelloRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit clientRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -204,7 +204,7 @@ class HelloRequest final :
   std::string* _internal_mutable_name();
   public:
 
-  // @@protoc_insertion_point(class_scope:chat.HelloRequest)
+  // @@protoc_insertion_point(class_scope:chat.clientRequest)
  private:
   class _Internal;
 
@@ -217,24 +217,24 @@ class HelloRequest final :
 };
 // -------------------------------------------------------------------
 
-class HelloReply final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.HelloReply) */ {
+class serverResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:chat.serverResponse) */ {
  public:
-  inline HelloReply() : HelloReply(nullptr) {}
-  ~HelloReply() override;
-  explicit constexpr HelloReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline serverResponse() : serverResponse(nullptr) {}
+  ~serverResponse() override;
+  explicit constexpr serverResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  HelloReply(const HelloReply& from);
-  HelloReply(HelloReply&& from) noexcept
-    : HelloReply() {
+  serverResponse(const serverResponse& from);
+  serverResponse(serverResponse&& from) noexcept
+    : serverResponse() {
     *this = ::std::move(from);
   }
 
-  inline HelloReply& operator=(const HelloReply& from) {
+  inline serverResponse& operator=(const serverResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline HelloReply& operator=(HelloReply&& from) noexcept {
+  inline serverResponse& operator=(serverResponse&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -257,20 +257,20 @@ class HelloReply final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const HelloReply& default_instance() {
+  static const serverResponse& default_instance() {
     return *internal_default_instance();
   }
-  static inline const HelloReply* internal_default_instance() {
-    return reinterpret_cast<const HelloReply*>(
-               &_HelloReply_default_instance_);
+  static inline const serverResponse* internal_default_instance() {
+    return reinterpret_cast<const serverResponse*>(
+               &_serverResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(HelloReply& a, HelloReply& b) {
+  friend void swap(serverResponse& a, serverResponse& b) {
     a.Swap(&b);
   }
-  inline void Swap(HelloReply* other) {
+  inline void Swap(serverResponse* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -278,7 +278,7 @@ class HelloReply final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(HelloReply* other) {
+  void UnsafeArenaSwap(serverResponse* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -286,17 +286,17 @@ class HelloReply final :
 
   // implements Message ----------------------------------------------
 
-  inline HelloReply* New() const final {
-    return new HelloReply();
+  inline serverResponse* New() const final {
+    return new serverResponse();
   }
 
-  HelloReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<HelloReply>(arena);
+  serverResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<serverResponse>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const HelloReply& from);
+  void CopyFrom(const serverResponse& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const HelloReply& from);
+  void MergeFrom(const serverResponse& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -313,13 +313,13 @@ class HelloReply final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(HelloReply* other);
+  void InternalSwap(serverResponse* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "chat.HelloReply";
+    return "chat.serverResponse";
   }
   protected:
-  explicit HelloReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit serverResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -352,7 +352,7 @@ class HelloReply final :
   std::string* _internal_mutable_message();
   public:
 
-  // @@protoc_insertion_point(class_scope:chat.HelloReply)
+  // @@protoc_insertion_point(class_scope:chat.serverResponse)
  private:
   class _Internal;
 
@@ -372,44 +372,44 @@ class HelloReply final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// HelloRequest
+// clientRequest
 
 // string name = 1;
-inline void HelloRequest::clear_name() {
+inline void clientRequest::clear_name() {
   name_.ClearToEmpty();
 }
-inline const std::string& HelloRequest::name() const {
-  // @@protoc_insertion_point(field_get:chat.HelloRequest.name)
+inline const std::string& clientRequest::name() const {
+  // @@protoc_insertion_point(field_get:chat.clientRequest.name)
   return _internal_name();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void HelloRequest::set_name(ArgT0&& arg0, ArgT... args) {
+void clientRequest::set_name(ArgT0&& arg0, ArgT... args) {
  
  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:chat.HelloRequest.name)
+  // @@protoc_insertion_point(field_set:chat.clientRequest.name)
 }
-inline std::string* HelloRequest::mutable_name() {
+inline std::string* clientRequest::mutable_name() {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:chat.HelloRequest.name)
+  // @@protoc_insertion_point(field_mutable:chat.clientRequest.name)
   return _s;
 }
-inline const std::string& HelloRequest::_internal_name() const {
+inline const std::string& clientRequest::_internal_name() const {
   return name_.Get();
 }
-inline void HelloRequest::_internal_set_name(const std::string& value) {
+inline void clientRequest::_internal_set_name(const std::string& value) {
   
   name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* HelloRequest::_internal_mutable_name() {
+inline std::string* clientRequest::_internal_mutable_name() {
   
   return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* HelloRequest::release_name() {
-  // @@protoc_insertion_point(field_release:chat.HelloRequest.name)
+inline std::string* clientRequest::release_name() {
+  // @@protoc_insertion_point(field_release:chat.clientRequest.name)
   return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void HelloRequest::set_allocated_name(std::string* name) {
+inline void clientRequest::set_allocated_name(std::string* name) {
   if (name != nullptr) {
     
   } else {
@@ -417,49 +417,49 @@ inline void HelloRequest::set_allocated_name(std::string* name) {
   }
   name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:chat.HelloRequest.name)
+  // @@protoc_insertion_point(field_set_allocated:chat.clientRequest.name)
 }
 
 // -------------------------------------------------------------------
 
-// HelloReply
+// serverResponse
 
 // string message = 1;
-inline void HelloReply::clear_message() {
+inline void serverResponse::clear_message() {
   message_.ClearToEmpty();
 }
-inline const std::string& HelloReply::message() const {
-  // @@protoc_insertion_point(field_get:chat.HelloReply.message)
+inline const std::string& serverResponse::message() const {
+  // @@protoc_insertion_point(field_get:chat.serverResponse.message)
   return _internal_message();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void HelloReply::set_message(ArgT0&& arg0, ArgT... args) {
+void serverResponse::set_message(ArgT0&& arg0, ArgT... args) {
  
  message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:chat.HelloReply.message)
+  // @@protoc_insertion_point(field_set:chat.serverResponse.message)
 }
-inline std::string* HelloReply::mutable_message() {
+inline std::string* serverResponse::mutable_message() {
   std::string* _s = _internal_mutable_message();
-  // @@protoc_insertion_point(field_mutable:chat.HelloReply.message)
+  // @@protoc_insertion_point(field_mutable:chat.serverResponse.message)
   return _s;
 }
-inline const std::string& HelloReply::_internal_message() const {
+inline const std::string& serverResponse::_internal_message() const {
   return message_.Get();
 }
-inline void HelloReply::_internal_set_message(const std::string& value) {
+inline void serverResponse::_internal_set_message(const std::string& value) {
   
   message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* HelloReply::_internal_mutable_message() {
+inline std::string* serverResponse::_internal_mutable_message() {
   
   return message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* HelloReply::release_message() {
-  // @@protoc_insertion_point(field_release:chat.HelloReply.message)
+inline std::string* serverResponse::release_message() {
+  // @@protoc_insertion_point(field_release:chat.serverResponse.message)
   return message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void HelloReply::set_allocated_message(std::string* message) {
+inline void serverResponse::set_allocated_message(std::string* message) {
   if (message != nullptr) {
     
   } else {
@@ -467,7 +467,7 @@ inline void HelloReply::set_allocated_message(std::string* message) {
   }
   message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), message,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:chat.HelloReply.message)
+  // @@protoc_insertion_point(field_set_allocated:chat.serverResponse.message)
 }
 
 #ifdef __GNUC__

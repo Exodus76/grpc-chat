@@ -1,0 +1,177 @@
+syntax = "proto3"; //without this compiler will assume proto2
+
+package chat;
+
+option go_package = "generated_files/";
+
+service Connect {
+    // Sends a greeting
+    // rpc SayHello (HelloRequest) returns (HelloReply) {}
+    rpc SayHello (stream clientRequest) returns (stream serverResponse) {}
+}
+
+// The request message containing the user's name.
+message clientRequest {
+  string name = 1;
+}
+  
+// The response message containing the greetings
+message serverResponse {
+  string message = 1;
+}
+
+#include "stub/basic.grpc.pb.h"
+#include <memory>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <thread>
+
+#include <grpcpp/grpcpp.h>
+#include <grpcpp/channel.h>
+#include <grpcpp/client_context.h>
+#include <grpcpp/create_channel.h>
+#include "gui/gui.h"
+
+using grpc::Channel;
+using grpc::ClientContext;
+using grpc::Status;
+using grpc::ClientReader;
+using grpc::ClientReaderWriter;
+using grpc::ClientWriter;
+
+using chat::Connect;
+using chat::clientRequest;
+using chat::serverResponse;
+
+clientRequest MakeClientRequest(const std::string& message) {
+    clientRequest r;
+    r.set_name(message);
+    return r;
+}
+
+class ConnectClient {
+public:
+    //ConnectClient(std::shared_ptr<Channel> channel) : stub_(Connect::NewStub(channel)) {}
+    ConnectClient(std::shared_ptr<Channel> channel) : stub_(Connect::NewStub(channel)) {};
+
+    void SayHello() {
+    }
+    
+    //the RPC funcntion we defined in the PROTO
+    /*std::string SayHello() {
+
+        clientRequest request;
+        request.set_name(user);
+
+        serverResponse reply;
+
+        ClientContext context;
+        
+        Status status = stub_->SayHello(&context, request_iterator, &reply);
+
+        if (status.ok()) {
+            return reply.message();
+        }
+        else {
+            std::cout << status.error_code() << ": " << status.error_message()
+                << std::endl;
+
+            return "RPC failed";
+        }
+    */
+
+private:
+    std::unique_ptr<Connect::Stub> stub_;
+};
+
+//#include "gui/gui.h"
+
+
+bool main(int argc, char** argv) {
+    
+}
+
+bool myApp::OnInit() {
+    myFrame* f = new myFrame("allo");
+    f->Show(true);
+    SetTopWindow(f);
+
+    std::string target_str = "localhost:42069";
+    ConnectClient connect(grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));
+    //std::string user("world");
+    //std::vector<> user = {"crazy", "stepbro", "mridul", "someone"};
+    std::unique_ptr<Connect::Stub> stub_;
+    //std::string reply;
+    ClientContext context;
+    std::shared_ptr<ClientReaderWriter<clientRequest, serverResponse>> stream(
+        stub_->SayHello(&context)
+    );
+    //write to the server
+    std::thread writer([stream]() {
+        std::vector<clientRequest> name{
+            MakeClientRequest("Marco"),
+            MakeClientRequest("Britney"),
+            MakeClientRequest("crazy"),
+            MakeClientRequest("someone")
+        };
+        for (const clientRequest& c : name) {
+            stream->Write(c);
+        }
+        stream->WritesDone();
+    });
+
+    serverResponse reply;
+    std::vector<std::string> s;
+    while (stream->Read(&reply)) {
+        s.push_back(reply.message());
+    }
+    f->m_textCtrl1->AppendText(s[0] + "\n");
+
+    //std::cout << "Connection received: " << reply << std::endl;
+    return true;
+}
+
+
+
+
+//int main(int argc, char** argv) {
+//    //just asking for the target to connect to
+//    std::string target_str;
+//    std::string arg_str("--target");
+//    if (argc > 1) {
+//        std::string arg_val = argv[1];
+//        size_t start_pos = arg_val.find(arg_str);
+//        if (start_pos != std::string::npos) {
+//            start_pos += arg_str.size();
+//            if (arg_val[start_pos] == '=') {
+//                target_str = arg_val.substr(start_pos + 1);
+//            }
+//            else {
+//                std::cout << "The only correct argument syntax is --target="
+//                    << std::endl;
+//                return 0;
+//            }
+//        }
+//        else {
+//            std::cout << "The only acceptable argument is --target=" << std::endl;
+//            return 0;
+//        }
+//    }
+//    else {
+//        target_str = "localhost:42069";
+//    }
+//    ConnectClient connect(
+//        grpc::CreateChannel(target_str, grpc::InsecureChannelCredentials()));
+//    std::string user("world");
+//    std::string reply = connect.SayHello(user);
+//    std::cout << "Connection received: " << reply << std::endl;
+//
+//    
+//    myApp m;
+//    //wxGetApp().OnInit();
+//    //std::cout << wxGetApp().GetAppDisplayName() << std::endl;
+//    //m.OnInit();
+//
+//    return 0;
+//}
