@@ -32,10 +32,11 @@ set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
 
 # Generated sources
 message(STATUS "Using gRPC ${gRPC_VERSION}")
-set(hw_proto_srcs "../stub/basic.pb.cc")
-set(hw_proto_hdrs "../stub/basic.pb.h")
-set(hw_grpc_srcs "../stub/basic.grpc.pb.cc")
-set(hw_grpc_hdrs "../stub/basic.grpc.pb.h")
+
+set(hw_proto_srcs "${CMAKE_CURRENT_SOURCE_DIR}/stub/basic.pb.cc")
+set(hw_proto_hdrs "${CMAKE_CURRENT_SOURCE_DIR}/stub/basic.pb.h")
+set(hw_grpc_srcs "${CMAKE_CURRENT_SOURCE_DIR}/stub/basic.grpc.pb.cc")
+set(hw_grpc_hdrs "${CMAKE_CURRENT_SOURCE_DIR}/stub/basic.grpc.pb.h")
 
 add_library( grpc_proto_wx
   ${hw_grpc_srcs}

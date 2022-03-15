@@ -1,3 +1,4 @@
+@ECHO OFF &SETLOCAL
 echo "creating cpp grpc stub"
 start protoc -I=. --grpc_out=. --plugin=protoc-gen-grpc=C:\Users\subaru\Desktop\clone\vcpkg\installed\x64-windows\tools\grpc\grpc_cpp_plugin.exe basic.proto
 echo "creating cpp general stub"

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <cmath>
 
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/channel.h>
@@ -18,12 +19,18 @@ using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 
 using chat::Connect;
-using chat::clientRequest;
-using chat::serverResponse;
+using chat::FirstConnect;
+using chat::User;
+using chat::Message;
+using chat::Close;
 
-clientRequest MakeClientRequest(const std::string& message) {
-    clientRequest r;
-    r.set_name(message);
+FirstConnect MakeClientRequest(const std::string& message, const int& id) {
+    FirstConnect r;
+    User u;
+    u.set_id(1);
+    u.set_name(message);
+    r.set_allocated_user(&u);
+    r.set_isactive(true);
     return r;
 }
 
@@ -33,35 +40,24 @@ public:
     ConnectClient(std::shared_ptr<Channel> channel) : stub_(Connect::NewStub(channel)) {
             
     };
+    //std::srand(std::time(nullptr));
 
-    void SayHello() {
+    void NewUserConnect() {
         ClientContext context;
-        std::shared_ptr<ClientReaderWriter<clientRequest, serverResponse>> stream(
-            stub_->SayHello(&context)
-        );
-        //write to the server
-        std::thread writer([stream]() {
-            std::vector<clientRequest> name{
-                MakeClientRequest("Marco"),
-                MakeClientRequest("Britney"),
-                MakeClientRequest("crazy"),
-                MakeClientRequest("someone")
-            };
-            for (const clientRequest& c : name) {
-                std::cout << "name: " << c.name() << "\n";
-                stream->Write(c);
-            }
-            stream->WritesDone();
-            });
+        int a = std::rand();
+        std::string name = std::to_string(a) + "anu";
 
-        serverResponse reply;
-        while (stream->Read(&reply)) {
-            std::cout << "received: " << reply.message() << "\n";
+        FirstConnect request = MakeClientRequest(name, 1);
+        Message reply;
+
+        std::unique_ptr<ClientReader<Message> > reader( stub_->NewUserConnect(&context, request) );
+        while (reader->Read(&reply))
+        {
+            std::cout << reply.message() << std::endl;
         }
-        writer.join();
-        Status status = stream->Finish();
+        Status status = reader->Finish();
         if (!status.ok()) {
-            std::cout << "fail" << std::endl;
+            std::cout << "Shieeeeeeeeet" << std::endl;
         }
 
     }
@@ -80,7 +76,7 @@ int main(int argc, char** argv) {
     //std::vector<> user = {"crazy", "stepbro", "mridul", "someone"};
     //std::string reply;
     //ConnectClient c();
-    connect.SayHello();
+    connect.NewUserConnect();
     //std::cout << "Connection received: " << reply << std::endl;
     return 0;
 }
